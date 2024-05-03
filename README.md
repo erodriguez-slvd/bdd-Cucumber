@@ -25,3 +25,11 @@ mvn clean eclipse:eclipse
 mvn clean test -Dsuite=cucumber-web
 ```
 
+## Implementation Details
+1. Add dependencies to pom file
+2. Create the feature file, should be stored in test/java/resources/features/ package and have .feature extension. Write down text of your scenario using cucumber syntax
+3. Create the steps file under test>java>cucumber>steps directory. Declare each step of your scenario in Jave сode. To declare steps in Java you need to use cucumber annotations @Given, @When, @Then, etc.
+4. Map text representation of scenario with Java classes describing it. You need to create test class and extend it from CucumberBaseTest carina class. Then use @CucumberOptions annotation in order to complete the mapping itself. Class body can be empty since all logic for building of scripts and running them is implemented inside CucumberBaseTest class.
+5. Start selenium server session with command **java -jar selenium-server-4.18.1.jar standalone**
+6. Run tests.
+
