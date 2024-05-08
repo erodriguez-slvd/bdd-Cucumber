@@ -33,7 +33,7 @@ mvn clean test -Dsuite=cucumber-web
 5. Start selenium server session with command **java -jar selenium-server-4.18.1.jar standalone**
 6. Run tests.
 ### Database
-![Database](EER Diagram.png)
+![Database](EERDiagram.png)
 ### MyBatis
 1. For integration with DB, we recommend to use MyBatis ORM framework. Add the required dependencies into Maven pom.xml:
 ```
