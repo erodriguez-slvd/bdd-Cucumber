@@ -32,4 +32,37 @@ mvn clean test -Dsuite=cucumber-web
 4. Map text representation of scenario with Java classes describing it. You need to create test class and extend it from CucumberBaseTest carina class. Then use @CucumberOptions annotation in order to complete the mapping itself. Class body can be empty since all logic for building of scripts and running them is implemented inside CucumberBaseTest class.
 5. Start selenium server session with command **java -jar selenium-server-4.18.1.jar standalone**
 6. Run tests.
+### Database
+![Alt text](com/solvd/carina/demo/db/EER Diagram.png)
+### MyBatis
+1. For integration with DB, we recommend to use MyBatis ORM framework. Add the required dependencies into Maven pom.xml:
+```
+<dependency>
+   <groupId>org.mybatis</groupId>
+   <artifactId>mybatis</artifactId>
+   <version>3.5.2</version>
+</dependency>
+<!-- MySQL driver -->
+<dependency>
+   <groupId>mysql</groupId>
+   <artifactId>mysql-connector-java</artifactId>
+   <version>8.0.17</version>
+</dependency>
+```
+2. Place DB credentials into src/main/resources/_database.properties
+```
+#===============================================================#
+#================== Database configuration ====================#
+#===============================================================#
+db.url=jdbc:postgresql://localhost:5432/postgres
+db.driver=org.postgresql.Driver
+db.user=postgres
+db.pass=postgres
 
+#db.url=jdbc:mysql://localhost:3306/mysql
+#db.driver=com.mysql.jdbc.Driver
+#db.user=mysql
+#db.pass=mysql
+```
+3. All the mappers and reference to _database.properties should be specified in src/main/resources/mybatis-config.xml
+4. Create a ConnectionFactory class, which will be responsible for MyBatis context initialization and creation of mapper instances
