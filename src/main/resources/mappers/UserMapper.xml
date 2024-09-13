@@ -4,7 +4,7 @@
 <mapper namespace="com.solvd.carina.demo.db.mappers.IUserMapper">
 
     <select id="findById" resultMap="UserResultMap">
-        SELECT * FROM users WHERE ID = #{id}
+        SELECT * FROM users WHERE id = #{id}
     </select>
 
     <select id="findByUserName" resultMap="UserResultMap">
@@ -12,8 +12,27 @@
     </select>
 
     <select id="findOrdersByUserId" resultMap="UserResultMap">
-        SELECT * FROM users WHERE ID = #{id}
+        SELECT * FROM users WHERE id = #{id}
     </select>
+
+    <insert id="create" parameterType="com.solvd.carina.demo.db.models.User">
+        INSERT INTO users (username, password, first_name, last_name, zip_code)
+        VALUES (
+        #{username},
+        #{password},
+        #{firstName},
+        #{lastName},
+        #{zipCode})
+    </insert>
+
+    <update id="update" parameterType="com.solvd.carina.demo.db.models.User">
+        UPDATE users SET username = #{userName}, password = #{password}, first_name = #{firstName}, last_name = #{lastName}, zip_code = #{zip}
+        WHERE id = #{id}
+    </update>
+    
+    <delete id="delete" parameterType="int">
+        DELETE FROM users WHERE id = #{id}
+    </delete>
 
     <resultMap type="com.solvd.carina.demo.db.models.User"
                id="UserResultMap" autoMapping="false">
